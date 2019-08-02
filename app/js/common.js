@@ -21,10 +21,11 @@ $(document).ready(function () {
 });
 
 
-function changeRange(currentValue){
-    if(currentValue >= maxRange){
+function changeRange(){
+    if(currentValue > maxRange){
         currentValue = maxRange;
-    } else if (currentValue <= 0){
+        log('maxRange');
+    } else if (currentValue < 0){
         currentValue = 0;
     }
     outputText.value = currentValue;
@@ -43,7 +44,7 @@ for (let i = 0; i < inputBtn.length; i++) {
                 currentValue -= 10;
             }
         }
-        changeRange(currentValue);
+        changeRange();
     });
 }
 
@@ -65,7 +66,7 @@ function changeRangeLines(){
 
 inputTextValue.addEventListener("focusout", changeTextInput);
 function changeTextInput(){
-    currentValue = inputTextValue.value;
-    log('changeTextInput' + currentValue);
-    changeRange(currentValue);
+    currentValue = +inputTextValue.value;
+    log('changeTextInput ' + currentValue);
+    changeRange();
 }
